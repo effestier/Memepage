@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laugh Factory 🔥</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #e63946 100%);
+        }
+
+        .bg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .bg-shapes .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+        }
+
+        .bg-shapes .shape:nth-child(1) { width: 400px; height: 400px; top: -100px; left: -100px; }
+        .bg-shapes .shape:nth-child(2) { width: 300px; height: 300px; bottom: 10%; right: -50px; }
+        .bg-shapes .shape:nth-child(3) { width: 200px; height: 200px; bottom: 30%; left: 20%; }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header { text-align: center; margin-bottom: 40px; }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 10px;
+        }
+
+        .subtitle { color: rgba(255, 255, 255, 0.9); font-size: 1.1rem; }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-glass {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-glass:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .btn-glass.active {
+            background: rgba(255, 255, 255, 0.45);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+        }
+
+        .joke-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .joke-text {
+            font-size: 1.4rem;
+            color: white;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .punchline {
+            font-size: 1.6rem;
+            color: #ffeaa7;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .meme-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .meme-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .meme-card:hover { transform: translateY(-5px) scale(1.02); }
+
+        .meme-media {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .meme-media img, .meme-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .meme-info {
+            padding: 15px;
+            color: white;
+        }
+
+        .meme-title {
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #ff6b35, #e63946);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 20px rgba(230, 57, 70, 0.5);
+        }
+
+        .hidden { display: none !important; }
+
+        .laughing {
+            font-size: 4rem;
+            animation: bounce 0.5s ease infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        .loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            gap: 10px;
+        }
+
+        .loader span {
+            width: 14px;
+            height: 14px;
+            background: white;
+            border-radius: 50%;
+            animation: dot-bounce 1.4s ease-in-out infinite;
+        }
+
+        .loader span:nth-child(1) { animation-delay: 0s; }
+        .loader span:nth-child(2) { animation-delay: 0.2s; }
+        .loader span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes dot-bounce {
+            0%, 80%, 100% { transform: scale(0.6); opacity: 0.5; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+
+        .joke-type-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+            padding: 5px 14px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .share-btn {
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .share-btn:hover { background: rgba(255, 255, 255, 0.35); transform: scale(1.05); }
+
+        .section-title {
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+            margin: 20px 0;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.85);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            z-index: 1000;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { bottom: -50px; opacity: 0; }
+            to { bottom: 30px; opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>🔥 Laugh Factory</h1>
+            <p class="subtitle">Infinite humor, never runs out!</p>
+        </header>
+
+        <div class="controls">
+            <button class="btn btn-glass active" onclick="showSection('jokes')">😄 Jokes</button>
+            <button class="btn btn-glass" onclick="showSection('memes-pic')">📸 Memes-Pic</button>
+            <button class="btn btn-glass" onclick="showSection('memes-gif')">🎬 Memes-GIF</button>
+            <button class="btn btn-glass" onclick="showSection('memes-clip')">🎥 Memes-Clip</button>
+            <button class="btn btn-glass" id="newJokeBtn">🎲 New Joke</button>
+        </div>
+
+        <!-- JOKES SECTION -->
+        <div id="jokes-section">
+            <div class="joke-card" id="jokeCard">
+                <div class="laughing">😂</div>
+                <br>
+                <div class="joke-type-badge" id="jokeType"></div>
+                <div class="joke-text" id="joke-setup"></div>
+                <div class="punchline" id="joke-punchline"></div>
+                <button class="share-btn" onclick="shareJoke()">📤 Share</button>
+            </div>
+        </div>
+
+        <!-- MEMES-PIC SECTION -->
+        <div id="memes-pic-section" class="hidden">
+            <h2 class="section-title">📸 Memes-Pic</h2>
+            <div class="meme-grid" id="memesPicGrid"></div>
+            <div class="loader" id="memesPicLoader"><span></span><span></span><span></span></div>
+            <div id="memesPicSentinel"></div>
+        </div>
+
+        <!-- MEMES-GIF SECTION -->
+        <div id="memes-gif-section" class="hidden">
+            <h2 class="section-title">🎬 Memes-GIF</h2>
+            <div class="meme-grid" id="memesGifGrid"></div>
+            <div class="loader" id="memesGifLoader"><span></span><span></span><span></span></div>
+            <div id="memesGifSentinel"></div>
+        </div>
+
+        <!-- MEMES-CLIP SECTION -->
+        <div id="memes-clip-section" class="hidden">
+            <h2 class="section-title">🎥 Memes-Clip</h2>
+            <div class="meme-grid" id="memesClipGrid"></div>
+            <div class="loader" id="memesClipLoader"><span></span><span></span><span></span></div>
+            <div id="memesClipSentinel"></div>
+        </div>
+    </div>
+
+    <script>
+        // ========== JOKES ==========
+        const jokes = [
+            { setup: "Why don't scientists trust atoms?", punchline: "Because they make up everything!", type: "Pun" },
+            { setup: "Why did the scarecrow win an award?", punchline: "He was outstanding in his field!", type: "Pun" },
+            { setup: "What do you call a fake noodle?", punchline: "An impasta!", type: "Pun" },
+            { setup: "Why don't eggs tell jokes?", punchline: "They'd crack each other up!", type: "Pun" },
+            { setup: "What do you call a bear with no teeth?", punchline: "A gummy bear!", type: "Pun" },
+            { setup: "Why did the bicycle fall over?", punchline: "Because it was two-tired!", type: "Pun" },
+            { setup: "What do you call a fish without eyes?", punchline: "A fsh!", type: "Pun" },
+            { setup: "Why did the math book look so sad?", punchline: "Because it had too many problems!", type: "Pun" },
+            { setup: "What do you call a sleepy dinosaur?", punchline: "A dino-snore!", type: "Pun" },
+            { setup: "Why don't skeletons fight each other?", punchline: "They don't have the guts!", type: "Dark" },
+            { setup: "I told my wife she was drawing her eyebrows too high.", punchline: "She looked surprised.", type: "Dad" },
+            { setup: "Why did the cookie go to the doctor?", punchline: "Because it was feeling crummy!", type: "Food" },
+            { setup: "What do you call a dog that does magic?", punchline: "A Labracadabrador!", type: "Pun" },
+            { setup: "Why did the tomato turn red?", punchline: "Because it saw the salad dressing!", type: "Food" },
+            { setup: "What's a skeleton's least favorite room?", punchline: "The living room!", type: "Dark" },
+            { setup: "Why did the coffee file a police report?", punchline: "It got mugged!", type: "Pun" },
+            { setup: "Why can't you give Elsa a balloon?", punchline: "Because she'll let it go!", type: "Movie" },
+            { setup: "What do you call a pig that knows karate?", punchline: "A pork-chop!", type: "Pun" },
+            { setup: "Why did the invisible man turn down a job offer?", punchline: "He couldn't see himself doing it!", type: "Pun" },
+            { setup: "What's the best thing about Switzerland?", punchline: "I don't know, but the flag is a big plus!", type: "Dad" },
+            { setup: "Why did the student eat his homework?", punchline: "Because his teacher told him it was a piece of cake!", type: "School" },
+            { setup: "What do you call a factory that makes okay products?", punchline: "A satisfactory!", type: "Pun" },
+            { setup: "Why did the gamers go broke?", punchline: "Because he spent everything on microtransactions!", type: "Tech" },
+            { setup: "What do you call a lazy kangaroo?", punchline: "A pouch potato!", type: "Pun" },
+            { setup: "Why don't programmers like nature?", punchline: "Too many bugs!", type: "Tech" },
+            { setup: "What's a computer's favorite snack?", punchline: "Microchips!", type: "Tech" },
+            { setup: "Why did the computer go to the doctor?", punchline: "Because it had a virus!", type: "Tech" },
+            { setup: "What do you call a dinosaur that crashes their car?", punchline: "Tyrannosaurus Wreck!", type: "Pun" },
+            { setup: "Why was the belt sent to prison?", punchline: "It held up a pair of pants!", type: "Pun" },
+            { setup: "What do you call a octopus that plays guitar?", punchline: "Eight-string!", type: "Pun" },
+            { setup: "Why did the orange lose the race?", punchline: "It ran out of juice!", type: "Food" },
+            { setup: "What's a vampire's favorite fruit?", punchline: "A necktarine!", type: "Dark" },
+            { setup: "Why do seagulls fly over the sea?", punchline: "Because if they flew over the bay, they'd be bagels!", type: "Pun" },
+            { setup: "What do you call a horse that lives next door?", punchline: "A neigh-bor!", type: "Pun" },
+            { setup: "Why did the picture go to prison?", punchline: "Because it was framed!", type: "Pun" },
+            { setup: "Why did the musician break up with his piano?", punchline: "He couldn't find the right keys!", type: "Music" },
+            { setup: "Why don't mountains get cold?", punchline: "They wear peaks!", type: "Pun" },
+            { setup: "What do you call a snake that's 3.14 meters long?", punchline: "A pi-thon!", type: "Pun" },
+            { setup: "Why did the cookie cry?", punchline: "Because his mom was a cracker!", type: "Food" },
+            { setup: "Why did the teddy bear skip dessert?", punchline: "Because she was already stuffed!", type: "Pun" },
+            { setup: "What do you call a sleeping cow?", punchline: "A beef jerky!", type: "Food" },
+            { setup: "Why don't we ever tell secrets on a farm?", punchline: "Because the potatoes have eyes and the corn has ears!", type: "Dad" },
+            { setup: "What do you call a fake vegetable?", punchline: "A cabbage!", type: "Pun" },
+            { setup: "Why did the banana go to the doctor?", punchline: "Because it wasn't peeling well!", type: "Food" },
+            { setup: "What do you call a nervous knight?", punchline: "Sir Rattles!", type: "Pun" },
+            { setup: "Why did the hipster burn his tongue?", punchline: "He drank his coffee before it was cool!", type: "Hipster" },
+            { setup: "Why did the skeleton refuse to go skydiving?", punchline: "He didn't have the guts!", type: "Dark" },
+            { setup: "What do you call a lazy sun?", punchline: "A no-ray!", type: "Pun" }
+        ];
+
+        // ========== STATIC MEMES ==========
+        const staticMemes = [
+            { url: "https://i.imgflip.com/1bij.jpg", name: "One Does Not Simply Walk Into Mordor", type: "pic" },
+            { url: "https://i.imgflip.com/9ehk.jpg", name: "Bad Luck Brian", type: "pic" },
+            { url: "https://i.imgflip.com/1ur9b0.jpg", name: "Drake Hotline Bling - Disapproval", type: "pic" },
+            { url: "https://i.imgflip.com/30b1gx.jpg", name: "Distracted Boyfriend", type: "pic" },
+            { url: "https://i.imgflip.com/1g8my4.jpg", name: "Is This A Pigeon?", type: "pic" },
+            { url: "https://i.imgflip.com/4t0m5.jpg", name: "Expanding Brain", type: "pic" },
+            { url: "https://i.imgflip.com/1otk96.jpg", name: "Leonardo DiCaprio Wolf of Wall Street", type: "pic" },
+            { url: "https://i.imgflip.com/9bg3k.jpg", name: "Waiting Skeleton", type: "pic" },
+            { url: "https://i.imgflip.com/26am.jpg", name: "Success Kid", type: "pic" },
+            { url: "https://i.imgflip.com/145qvv.jpg", name: "Laughing Leo", type: "pic" },
+            { url: "https://i.imgflip.com/3lmzyx.jpg", name: "Change My Mind Crow", type: "pic" },
+            { url: "https://i.imgflip.com/24s43.jpg", name: "Think About It", type: "pic" },
+            { url: "https://i.imgflip.com/1h7in3.jpg", name: "This Is Fine", type: "pic" },
+            { url: "https://i.imgflip.com/4ujyrm.jpg", name: "Surprised Pikachu", type: "pic" },
+            { url: "https://i.imgflip.com/5k7jpg.jpg", name: "UNO Draw 25 Cards", type: "pic" },
+            { url: "https://i.imgflip.com/7sy.jpg", name: "Grumpy Cat", type: "pic" },
+            { url: "https://i.imgflip.com/2fm6x.jpg", name: "Batman Slapping Robin", type: "pic" },
+            { url: "https://i.imgflip.com/3oSiKM.jpg", name: "Stonks", type: "pic" },
+            { url: "https://i.imgflip.com/1ihhfe.jpg", name: "They Don't Know", type: "pic" },
+            { url: "https://i.imgflip.com/wxica.jpg", name: "Bernie Sanders Asking", type: "pic" },
+            { url: "https://i.imgflip.com/1bhw.jpg", name: "Doge", type: "pic" },
+            { url: "https://i.imgflip.com/7kx3j.jpg", name: "Spider-Man Pointing", type: "pic" },
+            { url: "https://i.imgflip.com/9z5am.jpg", name: "Hide the Pain Harold", type: "pic" },
+            { url: "https://i.imgflip.com/23ls.jpg", name: "Focusing Chef", type: "pic" }
+        ];
+
+        // ========== STATIC GIFS ==========
+        const staticGifs = [
+            { url: "https://media.giphy.com/media/10JhviFuU2gE6c/giphy.gif", name: "Mind Blown GIF", type: "gif" },
+            { url: "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif", name: "Facepalm GIF", type: "gif" },
+            { url: "https://media.giphy.com/media/3oEjHAqoPMf6t51J1i/giphy.gif", name: "Thumbs Up GIF", type: "gif" },
+            { url: "https://media.giphy.com/media/l0MYGb1KlzMmN7zJS/giphy.gif", name: "Applause GIF", type: "gif" },
+            { url: "https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif", name: "Dancing GIF", type: "gif" },
+            { url: "https://media.giphy.com/media/l4FGsYUYsJNAfEjzK/giphy.gif", name: "LOL GIF", type: "gif" },
+            { url: "https://media.giphy.com/media/3o7TKSjRrfIPjeiVyM/giphy.gif", name: "Surprised GIF", type: "gif" },
+            { url: "https://media.giphy.com/media/5VKbvrjxpVqoM/giphy.gif", name: "Mic Drop GIF", type: "gif" },
+            { url: "https://media.giphy.com/media/26FPy3QZQqGtDcrja/giphy.gif", name: "Spongebob Mocking", type: "gif" },
+            { url: "https://media.giphy.com/media/xT0xeMA62E1XIlup68/giphy.gif", name: "Happy Dance GIF", type: "gif" },
+            { url: "https://media.giphy.com/media/l3q2K2DPRWQCGkH5y/giphy.gif", name: "Laughing Hard GIF", type: "gif" },
+            { url: "https://media.giphy.com/media/3o7btPCcdNniGF0BV2/giphy.gif", name: "Clapping GIF", type: "gif" },
+            { url: "https://media.giphy.com/media/3oriO0OEnv9J4iO1v6/giphy.gif", name: "WTF GIF", type: "gif" },
+            { url: "https://media.giphy.com/media/l0HlvtIPzPdt2usKs/giphy.gif", name: "Face Exploding GIF", type: "gif" },
+            { url: "https://media.giphy.com/media/3o6Zt6KHxJTbXCnSvu/giphy.gif", name: "Eye Roll GIF", type: "gif" }
+        ];
+
+        // ========== STATIC CLIPS ==========
+        const staticClips = [
+            { url: "https://media.giphy.com/media/3oEjI9LM4oL73TCo6U/giphy.gif", name: "Funny Cat Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/VbnWQ4FLX4C7O/giphy.gif", name: "Dog Running Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif", name: "Fail Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/lMepHT2zLfY2fS/giphy.gif", name: "Epic Reaction Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/3o7TKzeN7F1DlkvfLG/giphy.gif", name: "Celebration Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/l3q2K5D8YvOgYjWFO/giphy.gif", name: "WTF Moment", type: "clip" },
+            { url: "https://media.giphy.com/media/3o6oBvCdM8xUkEpvPq/giphy.gif", name: "Shock Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/l0MYJnJQ4EiYLxvQ4/giphy.gif", name: "Dance Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/3o7btNDQfY1u3VuwR2/giphy.gif", name: "Win Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/3oz8xSZQaFCJ2fCVnK/giphy.gif", name: "Fail Compilation Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/l3q2K5D8YvOgYjWFO/giphy.gif", name: "Funny Moment Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/l1J9EdzfOSgfyueLm/giphy.gif", name: "Reaction Clip", type: "clip" }
+        ];
+
+        // ========== CONTENT STATE ==========
+        const state = {
+            pic: { used: new Set(), shuffled: [], idx: 0, loading: false },
+            gif: { used: new Set(), shuffled: [], idx: 0, loading: false },
+            clip: { used: new Set(), shuffled: [], idx: 0, loading: false }
+        };
+
+        // ========== TOAST ==========
+        function showToast(msg) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = msg;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2500);
+        }
+
+        // ========== DOWNLOAD ==========
+        function downloadItem(url, name) {
+            // Try direct download via anchor
+            const ext = url.includes('.gif') ? 'gif' : 'jpg';
+            const filename = `laugh_${Date.now()}.${ext}`;
+
+            // Create download link
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+
+            // For images that might be blocked, open in new tab
+            showToast('📥 Opening image for download...');
+
+            setTimeout(() => {
+                window.open(url, '_blank');
+            }, 100);
+        }
+
+        // ========== CREATE MEME CARD ==========
+        function createMemeCard(item) {
+            const card = document.createElement('div');
+            card.className = 'meme-card';
+
+            card.innerHTML = `
+                <div class="meme-media">
+                    ${item.type === 'gif' || item.type === 'clip'
+                        ? `<img src="${item.url}" alt="${item.name}" loading="lazy" />`
+                        : `<img src="${item.url}" alt="${item.name}" loading="lazy" />`
+                    }
+                </div>
+                <div class="meme-info">
+                    <div class="meme-title">${item.name}</div>
+                    <button class="download-btn" onclick="downloadItem('${item.url}', '${item.name}')">
+                        ⬇️ Download
+                    </button>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // ========== GET CONTENT FROM SOURCES ==========
+        async function getPicContent() {
+            let items = [...staticMemes];
+
+            // Try imgflip
+            try {
+                const resp = await fetch('https://api.imgflip.com/get_memes');
+                const data = await resp.json();
+                if (data.success) {
+                    const newItems = data.data.memes
+                        .filter(m => m.url && !m.url.includes('.mp4'))
+                        .map(m => ({ url: m.url, name: m.name, type: 'pic' }));
+                    items = items.concat(newItems);
+                }
+            } catch (e) {}
+
+            return items;
+        }
+
+        async function getGifContent() {
+            let items = [...staticGifs];
+
+            // Try GIPHY
+            try {
+                const resp = await fetch('https://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC&limit=50&rating=g');
+                const data = await resp.json();
+                const newItems = data.data.map(g => ({
+                    url: g.images.fixed_height.url,
+                    name: g.title || 'GIF',
+                    type: 'gif'
+                }));
+                items = items.concat(newItems);
+            } catch (e) {}
+
+            try {
+                const resp = await fetch('https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=funny%20memes&limit=30&rating=g');
+                const data = await resp.json();
+                const newItems = data.data.map(g => ({
+                    url: g.images.fixed_height.url,
+                    name: g.title || 'Funny GIF',
+                    type: 'gif'
+                }));
+                items = items.concat(newItems);
+            } catch (e) {}
+
+            return items;
+        }
+
+        async function getClipContent() {
+            let items = [...staticClips];
+
+            // Try GIPHY reactions
+            try {
+                const resp = await fetch('https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=reactions%20funny&limit=40&rating=g');
+                const data = await resp.json();
+                const newItems = data.data.map(g => ({
+                    url: g.images.fixed_height.url,
+                    name: g.title || 'Reaction Clip',
+                    type: 'clip'
+                }));
+                items = items.concat(newItems);
+            } catch (e) {}
+
+            // Try Tenor
+            try {
+                const resp = await fetch('https://tenor.googleapis.com/v1/trending?key=AIzaSyAyimkuYQYF_FXBOXexdDKA_1bjnYmN0PQ&limit=30');
+                const data = await resp.json();
+                if (data.results) {
+                    const newItems = data.results
+                        .filter(r => r.media_formats && r.media_formats.gif)
+                        .map(r => ({
+                            url: r.media_formats.gif.url,
+                            name: r.content_description || 'GIF',
+                            type: 'clip'
+                        }));
+                    items = items.concat(newItems);
+                }
+            } catch (e) {}
+
+            return items;
+        }
+
+        // ========== LOAD CONTENT ==========
+        async function loadContent(type) {
+            if (state[type].loading) return;
+            state[type].loading = true;
+
+            const loaderId = type === 'pic' ? 'memesPicLoader' : type === 'gif' ? 'memesGifLoader' : 'memesClipLoader';
+            const gridId = type === 'pic' ? 'memesPicGrid' : type === 'gif' ? 'memesGifGrid' : 'memesClipGrid';
+
+            document.getElementById(loaderId).style.display = 'flex';
+            document.getElementById(gridId).style.display = 'grid';
+
+            try {
+                let allItems;
+                if (type === 'pic') allItems = await getPicContent();
+                else if (type === 'gif') allItems = await getGifContent();
+                else allItems = await getClipContent();
+
+                // Shuffle and filter
+                const freshItems = allItems
+                    .filter(item => item && item.url && !state[type].used.has(item.url))
+                    .sort(() => 0.5 - Math.random())
+                    .slice(0, 20);
+
+                freshItems.forEach(item => {
+                    state[type].used.add(item.url);
+                    const card = createMemeCard(item);
+                    document.getElementById(gridId).appendChild(card);
+                });
+
+            } catch (e) {
+                console.error('Load error:', e);
+            }
+
+            document.getElementById(loaderId).style.display = 'none';
+            state[type].loading = false;
+        }
+
+        // ========== SECTION SWITCHING ==========
+        function showSection(section) {
+            document.querySelectorAll('[id$="-section"]').forEach(s => s.classList.add('hidden'));
+            document.querySelectorAll('.controls .btn').forEach(b => b.classList.remove('active'));
+
+            document.getElementById(`${section}-section`).classList.remove('hidden');
+            document.querySelector(`.controls .btn:nth-child(${section === 'jokes' ? 1 : section === 'memes-pic' ? 2 : section === 'memes-gif' ? 3 : 4})`).classList.add('active');
+
+            if (section === 'jokes') return;
+
+            const type = section.replace('memes-', '');
+            const gridId = `memes${type.charAt(0).toUpperCase() + type.slice(1)}Grid`;
+
+            // Load if empty
+            setTimeout(() => {
+                if (document.getElementById(gridId).children.length === 0) {
+                    loadContent(type);
+                }
+            }, 100);
+        }
+
+        // ========== INFINITE SCROLL ==========
+        function setupScroll(type, sentinelId) {
+            const sentinel = document.getElementById(sentinelId);
+            new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    loadContent(type);
+                }
+            }, { rootMargin: '400px' }).observe(sentinel);
+        }
+
+        setupScroll('pic', 'memesPicSentinel');
+        setupScroll('gif', 'memesGifSentinel');
+        setupScroll('clip', 'memesClipSentinel');
+
+        // ========== JOKES FUNCTIONALITY ==========
+        let usedJokeIndices = [];
+        let currentJoke = null;
+
+        document.getElementById('newJokeBtn').addEventListener('click', loadNewJoke);
+
+        function loadNewJoke() {
+            let available = jokes.map((_, i) => i).filter(i => !usedJokeIndices.includes(i));
+            if (available.length === 0) {
+                usedJokeIndices = [];
+                available = jokes.map((_, i) => i);
+            }
+
+            const idx = available[Math.floor(Math.random() * available.length)];
+            usedJokeIndices.push(idx);
+            currentJoke = jokes[idx];
+
+            const card = document.getElementById('jokeCard');
+            card.style.animation = 'none';
+            card.offsetHeight;
+            card.style.animation = 'fadeIn 0.5s ease';
+
+            document.getElementById('jokeType').textContent = currentJoke.type;
+            document.getElementById('joke-setup').textContent = currentJoke.setup;
+            document.getElementById('joke-punchline').textContent = currentJoke.punchline;
+        }
+
+        function shareJoke() {
+            if (currentJoke) {
+                const text = `${currentJoke.setup}\n\n${currentJoke.punchline}`;
+                if (navigator.share) {
+                    navigator.share({ title: '😂 Joke', text });
+                } else {
+                    navigator.clipboard.writeText(text);
+                    showToast('✅ Copied to clipboard!');
+                }
+            }
+        }
+
+        // ========== INIT ==========
+        loadNewJoke();
+    </script>
+</body>
+</html>
