@@ -431,44 +431,97 @@
 
         // ========== STATIC GIFS ==========
         const staticGifs = [
-            { url: "https://media.giphy.com/media/10JhviFuU2gE6c/giphy.gif", name: "Mind Blown GIF", type: "gif" },
-            { url: "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif", name: "Facepalm GIF", type: "gif" },
-            { url: "https://media.giphy.com/media/3oEjHAqoPMf6t51J1i/giphy.gif", name: "Thumbs Up GIF", type: "gif" },
-            { url: "https://media.giphy.com/media/l0MYGb1KlzMmN7zJS/giphy.gif", name: "Applause GIF", type: "gif" },
-            { url: "https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif", name: "Dancing GIF", type: "gif" },
-            { url: "https://media.giphy.com/media/l4FGsYUYsJNAfEjzK/giphy.gif", name: "LOL GIF", type: "gif" },
-            { url: "https://media.giphy.com/media/3o7TKSjRrfIPjeiVyM/giphy.gif", name: "Surprised GIF", type: "gif" },
-            { url: "https://media.giphy.com/media/5VKbvrjxpVqoM/giphy.gif", name: "Mic Drop GIF", type: "gif" },
+            { url: "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif", name: "Facepalm", type: "gif" },
+            { url: "https://media.giphy.com/media/3oEjHAqoPMf6t51J1i/giphy.gif", name: "Thumbs Up", type: "gif" },
+            { url: "https://media.giphy.com/media/l0MYGb1KlzMmN7zJS/giphy.gif", name: "Applause", type: "gif" },
+            { url: "https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif", name: "Dancing", type: "gif" },
+            { url: "https://media.giphy.com/media/l4FGsYUYsJNAfEjzK/giphy.gif", name: "LOL", type: "gif" },
+            { url: "https://media.giphy.com/media/3o7TKSjRrfIPjeiVyM/giphy.gif", name: "Surprised", type: "gif" },
+            { url: "https://media.giphy.com/media/5VKbvrjxpVqoM/giphy.gif", name: "Mic Drop", type: "gif" },
             { url: "https://media.giphy.com/media/26FPy3QZQqGtDcrja/giphy.gif", name: "Spongebob Mocking", type: "gif" },
-            { url: "https://media.giphy.com/media/xT0xeMA62E1XIlup68/giphy.gif", name: "Happy Dance GIF", type: "gif" },
-            { url: "https://media.giphy.com/media/l3q2K2DPRWQCGkH5y/giphy.gif", name: "Laughing Hard GIF", type: "gif" },
-            { url: "https://media.giphy.com/media/3o7btPCcdNniGF0BV2/giphy.gif", name: "Clapping GIF", type: "gif" },
-            { url: "https://media.giphy.com/media/3oriO0OEnv9J4iO1v6/giphy.gif", name: "WTF GIF", type: "gif" },
-            { url: "https://media.giphy.com/media/l0HlvtIPzPdt2usKs/giphy.gif", name: "Face Exploding GIF", type: "gif" },
-            { url: "https://media.giphy.com/media/3o6Zt6KHxJTbXCnSvu/giphy.gif", name: "Eye Roll GIF", type: "gif" }
+            { url: "https://media.giphy.com/media/xT0xeMA62E1XIlup68/giphy.gif", name: "Happy Dance", type: "gif" },
+            { url: "https://media.giphy.com/media/l3q2K2DPRWQCGkH5y/giphy.gif", name: "Laughing", type: "gif" },
+            { url: "https://media.giphy.com/media/3o7btPCcdNniGF0BV2/giphy.gif", name: "Clapping", type: "gif" },
+            { url: "https://media.giphy.com/media/3oriO0OEnv9J4iO1v6/giphy.gif", name: "Mind Explode", type: "gif" },
+            { url: "https://media.giphy.com/media/l0HlvtIPzPdt2usKs/giphy.gif", name: "Brain Explode", type: "gif" },
+            { url: "https://media.giphy.com/media/3o6Zt6KHxJTbXCnSvu/giphy.gif", name: "Eye Roll", type: "gif" },
+            { url: "https://media.giphy.com/media/3oEjI9LM4oL73TCo6U/giphy.gif", name: "Cat GIF", type: "gif" },
+            { url: "https://media.giphy.com/media/VbnWQ4FLX4C7O/giphy.gif", name: "Dog GIF", type: "gif" },
+            { url: "https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif", name: "Fail GIF", type: "gif" },
+            { url: "https://media.giphy.com/media/lMepHT2zLfY2fS/giphy.gif", name: "Epic Reaction", type: "gif" },
+            { url: "https://media.giphy.com/media/3o7TKzeN7F1DlkvfLG/giphy.gif", name: "Celebration", type: "gif" },
+            { url: "https://media.giphy.com/media/l3q2K5D8YvOgYjWFO/giphy.gif", name: "Shocked", type: "gif" },
+            { url: "https://media.giphy.com/media/3o6oBvCdM8xUkEpvPq/giphy.gif", name: "WTF GIF", type: "gif" },
+            { url: "https://media.giphy.com/media/l0MYJnJQ4EiYLxvQ4/giphy.gif", name: "Dancing 2", type: "gif" },
+            { url: "https://media.giphy.com/media/3o7btNDQfY1u3VuwR2/giphy.gif", name: "Win GIF", type: "gif" },
+            { url: "https://media.giphy.com/media/3oz8xSZQaFCJ2fCVnK/giphy.gif", name: "Fail Compilation", type: "gif" }
         ];
 
         // ========== STATIC CLIPS ==========
         const staticClips = [
-            { url: "https://media.giphy.com/media/3oEjI9LM4oL73TCo6U/giphy.gif", name: "Funny Cat Clip", type: "clip" },
-            { url: "https://media.giphy.com/media/VbnWQ4FLX4C7O/giphy.gif", name: "Dog Running Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif", name: "Facepalm Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/3oEjHAqoPMf6t51J1i/giphy.gif", name: "Thumbs Up Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/l0MYGb1KlzMmN7zJS/giphy.gif", name: "Applause Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif", name: "Dancing Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/l4FGsYUYsJNAfEjzK/giphy.gif", name: "LOL Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/3o7TKSjRrfIPjeiVyM/giphy.gif", name: "Surprised Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/5VKbvrjxpVqoM/giphy.gif", name: "Mic Drop Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/26FPy3QZQqGtDcrja/giphy.gif", name: "Mocking Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/xT0xeMA62E1XIlup68/giphy.gif", name: "Happy Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/l3q2K2DPRWQCGkH5y/giphy.gif", name: "Laughing Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/3o7btPCcdNniGF0BV2/giphy.gif", name: "Clapping Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/3oriO0OEnv9J4iO1v6/giphy.gif", name: "Mind Blown Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/l0HlvtIPzPdt2usKs/giphy.gif", name: "Exploding Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/3o6Zt6KHxJTbXCnSvu/giphy.gif", name: "Eye Roll Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/3oEjI9LM4oL73TCo6U/giphy.gif", name: "Cat Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/VbnWQ4FLX4C7O/giphy.gif", name: "Dog Clip", type: "clip" },
             { url: "https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif", name: "Fail Clip", type: "clip" },
-            { url: "https://media.giphy.com/media/lMepHT2zLfY2fS/giphy.gif", name: "Epic Reaction Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/lMepHT2zLfY2fS/giphy.gif", name: "Epic Clip", type: "clip" },
             { url: "https://media.giphy.com/media/3o7TKzeN7F1DlkvfLG/giphy.gif", name: "Celebration Clip", type: "clip" },
-            { url: "https://media.giphy.com/media/l3q2K5D8YvOgYjWFO/giphy.gif", name: "WTF Moment", type: "clip" },
-            { url: "https://media.giphy.com/media/3o6oBvCdM8xUkEpvPq/giphy.gif", name: "Shock Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/l3q2K5D8YvOgYjWFO/giphy.gif", name: "Shocked Clip", type: "clip" },
+            { url: "https://media.giphy.com/media/3o6oBvCdM8xUkEpvPq/giphy.gif", name: "WTF Clip", type: "clip" },
             { url: "https://media.giphy.com/media/l0MYJnJQ4EiYLxvQ4/giphy.gif", name: "Dance Clip", type: "clip" },
             { url: "https://media.giphy.com/media/3o7btNDQfY1u3VuwR2/giphy.gif", name: "Win Clip", type: "clip" },
-            { url: "https://media.giphy.com/media/3oz8xSZQaFCJ2fCVnK/giphy.gif", name: "Fail Compilation Clip", type: "clip" },
-            { url: "https://media.giphy.com/media/l3q2K5D8YvOgYjWFO/giphy.gif", name: "Funny Moment Clip", type: "clip" },
-            { url: "https://media.giphy.com/media/l1J9EdzfOSgfyueLm/giphy.gif", name: "Reaction Clip", type: "clip" }
+            { url: "https://media.giphy.com/media/3oz8xSZQaFCJ2fCVnK/giphy.gif", name: "Fail Comp Clip", type: "clip" }
         ];
+
+        // Extra GIF sources for unlimited content
+        const extraGifSources = [
+            'https://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC&limit=50&rating=g',
+            'https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=funny&limit=50&rating=g',
+            'https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=memes&limit=50&rating=g',
+            'https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=lol&limit=50&rating=g',
+            'https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=wow&limit=50&rating=g',
+            'https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=laugh&limit=50&rating=g',
+            'https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=comedy&limit=50&rating=g',
+            'https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=hilarious&limit=50&rating=g',
+            'https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=fail&limit=50&rating=g',
+            'https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=epic&limit=50&rating=g'
+        ];
+
+        // Extra clip sources for unlimited content
+        const extraClipSources = [
+            'https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=reactions&limit=50&rating=g',
+            'https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=funny%20reactions&limit=50&rating=g',
+            'https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=epic%20fail&limit=50&rating=g',
+            'https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=yes&limit=50&rating=g',
+            'https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=no&limit=50&rating=g',
+            'https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=wow&limit=50&rating=g',
+            'https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=omg&limit=50&rating=g',
+            'https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=lol&limit=50&rating=g',
+            'https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=rofl&limit=50&rating=g',
+            'https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=hilarious&limit=50&rating=g'
+        ];
+
+        // Source rotation tracking
+        let gifSourceIdx = 0;
+        let clipSourceIdx = 0;
 
         // ========== CONTENT STATE ==========
         const state = {
-            pic: { used: new Set(), shuffled: [], idx: 0, loading: false },
-            gif: { used: new Set(), shuffled: [], idx: 0, loading: false },
-            clip: { used: new Set(), shuffled: [], idx: 0, loading: false }
+            pic: { used: new Set(), shuffled: [], idx: 0, loading: false, page: 0 },
+            gif: { used: new Set(), shuffled: [], idx: 0, loading: false, page: 0 },
+            clip: { used: new Set(), shuffled: [], idx: 0, loading: false, page: 0 }
         };
 
         // ========== TOAST ==========
@@ -546,48 +599,24 @@
         async function getGifContent() {
             let items = [...staticGifs];
 
-            // Try GIPHY
-            try {
-                const resp = await fetch('https://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC&limit=50&rating=g');
-                const data = await resp.json();
-                const newItems = data.data.map(g => ({
-                    url: g.images.fixed_height.url,
-                    name: g.title || 'GIF',
-                    type: 'gif'
-                }));
-                items = items.concat(newItems);
-            } catch (e) {}
+            // Cycle through GIPHY sources for unlimited content
+            const source = extraGifSources[gifSourceIdx % extraGifSources.length];
+            gifSourceIdx++;
 
             try {
-                const resp = await fetch('https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=funny%20memes&limit=30&rating=g');
+                const resp = await fetch(source);
                 const data = await resp.json();
-                const newItems = data.data.map(g => ({
-                    url: g.images.fixed_height.url,
-                    name: g.title || 'Funny GIF',
-                    type: 'gif'
-                }));
-                items = items.concat(newItems);
+                if (data.data && data.data.length > 0) {
+                    const newItems = data.data.map(g => ({
+                        url: g.images.fixed_height.url,
+                        name: g.title || 'GIF',
+                        type: 'gif'
+                    }));
+                    items = items.concat(newItems);
+                }
             } catch (e) {}
 
-            return items;
-        }
-
-        async function getClipContent() {
-            let items = [...staticClips];
-
-            // Try GIPHY reactions
-            try {
-                const resp = await fetch('https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=reactions%20funny&limit=40&rating=g');
-                const data = await resp.json();
-                const newItems = data.data.map(g => ({
-                    url: g.images.fixed_height.url,
-                    name: g.title || 'Reaction Clip',
-                    type: 'clip'
-                }));
-                items = items.concat(newItems);
-            } catch (e) {}
-
-            // Try Tenor
+            // Try Tenor as backup
             try {
                 const resp = await fetch('https://tenor.googleapis.com/v1/trending?key=AIzaSyAyimkuYQYF_FXBOXexdDKA_1bjnYmN0PQ&limit=30');
                 const data = await resp.json();
@@ -597,6 +626,45 @@
                         .map(r => ({
                             url: r.media_formats.gif.url,
                             name: r.content_description || 'GIF',
+                            type: 'gif'
+                        }));
+                    items = items.concat(newItems);
+                }
+            } catch (e) {}
+
+            return items;
+        }
+
+        async function getClipContent() {
+            let items = [...staticClips];
+
+            // Cycle through GIPHY sources for unlimited content
+            const source = extraClipSources[clipSourceIdx % extraClipSources.length];
+            clipSourceIdx++;
+
+            try {
+                const resp = await fetch(source);
+                const data = await resp.json();
+                if (data.data && data.data.length > 0) {
+                    const newItems = data.data.map(g => ({
+                        url: g.images.fixed_height.url,
+                        name: g.title || 'Clip',
+                        type: 'clip'
+                    }));
+                    items = items.concat(newItems);
+                }
+            } catch (e) {}
+
+            // Try Tenor as backup
+            try {
+                const resp = await fetch('https://tenor.googleapis.com/v1/trending?key=AIzaSyAyimkuYQYF_FXBOXexdDKA_1bjnYmN0PQ&limit=30');
+                const data = await resp.json();
+                if (data.results) {
+                    const newItems = data.results
+                        .filter(r => r.media_formats && r.media_formats.gif)
+                        .map(r => ({
+                            url: r.media_formats.gif.url,
+                            name: r.content_description || 'Clip',
                             type: 'clip'
                         }));
                     items = items.concat(newItems);
@@ -623,11 +691,20 @@
                 else if (type === 'gif') allItems = await getGifContent();
                 else allItems = await getClipContent();
 
-                // Shuffle and filter
-                const freshItems = allItems
+                // Shuffle and filter - show more items per load
+                let freshItems = allItems
                     .filter(item => item && item.url && !state[type].used.has(item.url))
                     .sort(() => 0.5 - Math.random())
-                    .slice(0, 20);
+                    .slice(0, 24); // Load 24 items at a time
+
+                // If no new unique items, reuse from pool
+                if (freshItems.length < 10) {
+                    state[type].used.clear();
+                    freshItems = allItems
+                        .filter(item => item && item.url)
+                        .sort(() => 0.5 - Math.random())
+                        .slice(0, 24);
+                }
 
                 freshItems.forEach(item => {
                     state[type].used.add(item.url);
@@ -637,10 +714,12 @@
 
             } catch (e) {
                 console.error('Load error:', e);
+                showToast('Loading more content...');
             }
 
             document.getElementById(loaderId).style.display = 'none';
             state[type].loading = false;
+            state[type].page++;
         }
 
         // ========== SECTION SWITCHING ==========
@@ -656,12 +735,12 @@
             const type = section.replace('memes-', '');
             const gridId = `memes${type.charAt(0).toUpperCase() + type.slice(1)}Grid`;
 
-            // Load if empty
-            setTimeout(() => {
-                if (document.getElementById(gridId).children.length === 0) {
-                    loadContent(type);
-                }
-            }, 100);
+            // Always load fresh content when switching sections
+            const grid = document.getElementById(gridId);
+            grid.innerHTML = ''; // Clear previous content
+            state[type].used.clear(); // Reset used set for fresh items
+
+            loadContent(type);
         }
 
         // ========== INFINITE SCROLL ==========
@@ -671,12 +750,20 @@
                 if (entries[0].isIntersecting) {
                     loadContent(type);
                 }
-            }, { rootMargin: '400px' }).observe(sentinel);
+            }, { rootMargin: '800px' }).observe(sentinel); // Increased to 800px for earlier loading
         }
 
         setupScroll('pic', 'memesPicSentinel');
         setupScroll('gif', 'memesGifSentinel');
         setupScroll('clip', 'memesClipSentinel');
+
+        // ========== INIT ==========
+        // Pre-load all sections on page load
+        window.addEventListener('load', () => {
+            setTimeout(() => loadContent('pic'), 500);
+            setTimeout(() => loadContent('gif'), 1000);
+            setTimeout(() => loadContent('clip'), 1500);
+        });
 
         // ========== JOKES FUNCTIONALITY ==========
         let usedJokeIndices = [];
